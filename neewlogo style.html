@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quran Academy - Privacy Protected</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --p: #064e3b; --g: #d97706; }
+        body { font-family: 'Poppins', sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        
+        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
+        .logo { width: 70px; height: 70px; background: var(--p); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 30px; }
+        
+        h2 { color: var(--p); margin-bottom: 20px; }
+        .input-box { margin-bottom: 15px; text-align: left; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; }
+        
+        input, select { width: 100%; padding: 12px; border: 1.5px solid #ddd; border-radius: 10px; box-sizing: border-box; outline: none; transition: 0.3s; }
+        input:focus { border-color: var(--p); }
+
+        .btn { background: #25D366; color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn:hover { background: #1eb956; transform: translateY(-2px); }
+
+        /* Multi-language Selector */
+        .lang-switch { margin-bottom: 15px; text-align: right; }
+        select.lang { padding: 5px; border-radius: 5px; border: 1px solid #ccc; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<div class="card" id="formArea">
+    <div class="lang-switch">
+        <select class="lang" onchange="changeLang(this.value)">
+            <option value="en">English</option>
+            <option value="ur">اردو</option>
+            <option value="sd">سنڌي</option>
+        </select>
+    </div>
+
+    <div class="logo"><i class="fa-solid fa-mosque"></i></div>
+    <h2 id="t">Admission Form</h2>
+
+    <form id="secureForm">
+        <div class="input-box">
+            <label id="l1">Full Name</label>
+            <input type="text" id="nm" placeholder="Student Name" required>
+        </div>
+        <div class="input-box">
+            <label id="l2">Age</label>
+            <input type="number" id="ag" placeholder="Ex: 15" required>
+        </div>
+        <div class="input-box">
+            <label id="l3">Course</label>
+            <select id="cs">
+                <option value="Qaida">Noorani Qaida</option>
+                <option value="Tajweed">Tajweed-ul-Quran</option>
+                <option value="Hifz">Hifz</option>
+            </select>
+        </div>
+        <div class="input-box">
+            <label id="l4">Preferred Time</label>
+            <input type="time" id="tm" required>
+        </div>
+
+        <button type="submit" class="btn">
+            <i class="fab fa-whatsapp"></i> <span id="bt">Apply Now</span>
+        </button>
+    </form>
+</div>
+
+<script>
+    // --- SECURITY SECTION ---
+    // Aapka number Base64 mein encoded hai taake code mein nazar na aaye.
+    // Example: "OTIzMDAwMDAwMDAw" ka matlab hai "923000000000"
+    // Apna number convert karne ke liye: btoa("923xxxxxxxxx") use karein ya mujhe batayein.
+    const _0xhidden = "OTIzMDAxMjM0NTY3"; // <--- CHANGE THIS (Aapka Encoded Number)
+
+    function decodeNum(e) { return atob(e); }
+
+    const dict = {
+        en: {t: "Admission Form", l1: "Full Name", l2: "Age", l3: "Course", l4: "Time", bt: "Apply Now"},
+        ur: {t: "داخلہ فارم", l1: "مکمل نام", l2: "عمر", l3: "کورس", l4: "وقت", bt: "ابھی اپلائی کریں"},
+        sd: {t: "داخلا فارم", l1: "پورو نالو", l2: "عمر", l3: "ڪورس", l4: "وقت", bt: "هاڻي بڪ ڪريو"}
+    };
+
+    function changeLang(l) {
+        const d = dict[l];
+        document.getElementById("t").innerText = d.t;
+        document.getElementById("l1").innerText = d.l1;
+        document.getElementById("l2").innerText = d.l2;
+        document.getElementById("l3").innerText = d.l3;
+        document.getElementById("l4").innerText = d.l4;
+        document.getElementById("bt").innerText = d.bt;
+        document.getElementById("formArea").style.direction = (l==='en'?'ltr':'rtl');
+    }
+
+    document.getElementById("secureForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        const n = document.getElementById("nm").value;
+        const a = document.getElementById("ag").value;
+        const c = document.getElementById("cs").value;
+        const t = document.getElementById("tm").value;
+
+        const msg = `*New Admission Request*%0AName: ${n}%0AAge: ${a}%0ACourse: ${c}%0ATime: ${t}`;
+        
+        // Number ko runtime par decode karke foran bhej dena
+        const finalNum = decodeNum(_0xhidden);
+        const url = `https://api.whatsapp.com/send?phone=${923148871034}&text=${msg}`;
+        
+        // Naye tab mein kholna taake student pichle page par hi rahe
+        window.location.href = url;
+    });
+</script>
+
+</body>
+</html>

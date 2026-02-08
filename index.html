@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Quran Tuition - Enrollment</title>
+    <style>
+        /* Modern Quranic Theme CSS */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f0f4f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://www.transparenttextures.com/patterns/arabesque.png');
+        }
+
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 8px solid #1b5e20; /* Islamic Green */
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            color: #1b5e20;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #1b5e20;
+            box-shadow: 0 0 5px rgba(27,94,32,0.2);
+        }
+
+        .btn-submit {
+            background: #1b5e20;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background: #2e7d32;
+            transform: translateY(-2px);
+        }
+
+        #successMessage {
+            display: none;
+            color: #1b5e20;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div class="header">
+        <h1>Quran Academy</h1>
+        <p>Learn Quran Online from Home</p>
+    </div>
+
+    <form id="tuitionForm">
+        <div class="input-group">
+            <label>Student Full Name</label>
+            <input type="text" id="fullName" placeholder="Enter student name" required>
+        </div>
+
+        <div class="input-group">
+            <label>WhatsApp Number</label>
+            <input type="tel" id="whatsapp" placeholder="+92 300 1234567" required>
+        </div>
+
+        <div class="input-group">
+            <label>Select Course</label>
+            <select id="course" required>
+                <option value="">Choose a course...</option>
+                <option value="Noorani Qaida">Noorani Qaida</option>
+                <option value="Quran Reading">Quran with Tajweed</option>
+                <option value="Hifz">Quran Memorization (Hifz)</option>
+                <option value="Islamic Studies">Islamic Studies</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Preferred Time (Your Local Time)</label>
+            <input type="time" id="prefTime" required>
+        </div>
+
+        <button type="submit" class="btn-submit">Book Free Trial Class</button>
+    </form>
+
+    <div id="successMessage">JazakAllah! We will contact you soon.</div>
+</div>
+
+<script>
+    document.getElementById("tuitionForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        // Form Data Collection
+        const name = document.getElementById("fullName").value;
+        const course = document.getElementById("course").value;
+
+        // Simple Success Animation
+        const btn = document.querySelector(".btn-submit");
+        const msg = document.getElementById("successMessage");
+
+        btn.innerText = "Processing...";
+        btn.disabled = true;
+
+        setTimeout(() => {
+            btn.style.display = "none";
+            msg.style.display = "block";
+            console.log("New Student:", name, "for", course);
+        }, 1500);
+    });
+</script>
+
+</body>
+</html>

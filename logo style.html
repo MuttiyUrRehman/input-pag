@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Quran Academy - Professional Enrollment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #064e3b;
+            --gold: #d97706;
+            --wa-green: #25D366;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            background: #064e3b;
+            /* Islamic Pattern Background */
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 2px, transparent 2px);
+            background-size: 30px 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .main-container {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Top Header & Language Switcher */
+        .top-section {
+            background: var(--primary-green);
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .lang-bar {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .lang-bar select {
+            padding: 5px 10px;
+            border-radius: 8px;
+            border: none;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px solid var(--gold);
+        }
+
+        .logo-placeholder i { font-size: 40px; color: var(--primary-green); }
+
+        /* Form Styling */
+        .form-content { padding: 30px; }
+        
+        .input-group { margin-bottom: 18px; position: relative; }
+        
+        label { 
+            display: block; 
+            margin-bottom: 6px; 
+            font-weight: 600; 
+            color: #333;
+            font-size: 14px;
+        }
+
+        .input-with-icon { position: relative; }
+        
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-green);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 12px 12px 45px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            box-sizing: border-box;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--gold);
+            outline: none;
+            background: #fffdfa;
+        }
+
+        .btn-whatsapp {
+            background: var(--wa-green);
+            color: white;
+            border: none;
+            padding: 16px;
+            width: 100%;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1eb956;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        /* RTL Handling for Urdu/Arabic/Sindhi */
+        .rtl { direction: rtl; text-align: right; }
+        .rtl .input-with-icon i { right: 15px; left: auto; }
+        .rtl input, .rtl select { padding: 12px 45px 12px 12px; }
+
+    </style>
+</head>
+<body>
+
+<div class="main-container" id="pageWrapper">
+    <div class="lang-bar">
+        <select onchange="updateLang(this.value)">
+            <option value="en">English</option>
+            <option value="ur">اردو (Urdu)</option>
+            <option value="ar">العربية (Arabic)</option>
+            <option value="sd">سنڌي (Sindhi)</option>
+        </select>
+    </div>
+
+    <div class="top-section">
+        <div class="logo-placeholder">
+            <i class="fa-solid fa-quran"></i>
+        </div>
+        <h2 id="main-title">Online Quran Academy</h2>
+        <p id="sub-title">Learn with Tajweed from Home</p>
+    </div>
+
+    <div class="form-content">
+        <form id="enrollForm">
+            <div class="input-group">
+                <label id="lbl-name">Full Name</label>
+                <div class="input-with-icon">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="fname" placeholder="..." required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label id="lbl-age">Age</label>
+                <div class="input-with-icon">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <input type="number" id="age" placeholder="Age" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label id="lbl-course">Course Name</label>
+                <div class="input-with-icon">
+                    <i class="fa-solid fa-book-open"></i>
+                    <select id="course">
+                        <option value="Noorani Qaida">Noorani Qaida</option>
+                        <option value="Quran with Tajweed">Quran with Tajweed</option>
+                        <option value="Hifz-e-Quran">Hifz-e-Quran</option>
+                        <option value="Basic Islamic Studies">Basic Islamic Studies</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label id="lbl-time">Preferred Class Time</label>
+                <div class="input-with-icon">
+                    <i class="fa-solid fa-clock"></i>
+                    <input type="time" id="classtime" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-whatsapp">
+                <i class="fa-brands fa-whatsapp"></i> <span id="btn-text">Send on WhatsApp</span>
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const dictionary = {
+        en: { title: "Online Quran Academy", sub: "Learn with Tajweed from Home", name: "Full Name", age: "Age", course: "Course Name", time: "Preferred Class Time", btn: "Send on WhatsApp", rtl: false },
+        ur: { title: "آن لائن قرآن اکیڈمی", sub: "گھر بیٹھے تجوید کے ساتھ قرآن سیکھیں", name: "مکمل نام", age: "عمر", course: "کورس کا نام", time: "کلاس کا وقت", btn: "واٹس ایپ پر بھیجیں", rtl: true },
+        ar: { title: "أكاديمية القرآن عبر الإنترنت", sub: "تعلم القرآن بالتجويد من منزلك", name: "الاسم الكامل", age: "العمر", course: "اسم الدورة", time: "وقت الحصة المفضل", btn: "أرسل عبر واتساب", rtl: true },
+        sd: { title: "آن لائن قرآن اڪيڊمي", sub: "گھر ويٺي تجويد سان قرآن سکو", name: "پورو نالو", age: "عمر", course: "ڪورس جو نالو", time: "ڪلاس جو وقت", btn: "واٽس اپ تي موڪليو", rtl: true }
+    };
+
+    function updateLang(lang) {
+        const d = dictionary[lang];
+        document.getElementById("main-title").innerText = d.title;
+        document.getElementById("sub-title").innerText = d.sub;
+        document.getElementById("lbl-name").innerText = d.name;
+        document.getElementById("lbl-age").innerText = d.age;
+        document.getElementById("lbl-course").innerText = d.course;
+        document.getElementById("lbl-time").innerText = d.time;
+        document.getElementById("btn-text").innerText = d.btn;
+
+        const wrapper = document.getElementById("pageWrapper");
+        if(d.rtl) { wrapper.classList.add("rtl"); } else { wrapper.classList.remove("rtl"); }
+    }
+
+    document.getElementById("enrollForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        // --- CONFIGURATION ---
+        const myWhatsApp = "923000000000"; // <--- YAHAN APNA NUMBER LIKHEIN (Format: 923xxxxxxxxx)
+        // ---------------------
+
+        const name = document.getElementById("fname").value;
+        const age = document.getElementById("age").value;
+        const course = document.getElementById("course").value;
+        const time = document.getElementById("classtime").value;
+
+        const waMsg = `*Assalam-o-Alaikum!*%0A` +
+                      `*New Student Admission*%0A` +
+                      `--------------------------%0A` +
+                      `👤 *Name:* ${name}%0A` +
+                      `🎂 *Age:* ${age}%0A` +
+                      `📖 *Course:* ${course}%0A` +
+                      `🕒 *Time:* ${time}%0A` +
+                      `--------------------------%0A` +
+                      `Please contact me for the trial class.`;
+
+        window.open(`https://api.whatsapp.com/send?phone=${923148871034}&text=${waMsg}`, '_blank');
+    });
+</script>
+
+</body>
+</html>
